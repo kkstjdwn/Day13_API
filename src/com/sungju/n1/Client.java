@@ -39,14 +39,14 @@ public class Client {
 				os = sc.getOutputStream();
 				ow = new OutputStreamWriter(os);
 				bw = new BufferedWriter(ow);
-				if (str.toLowerCase().equals("q")) {
-					check = !check;
-					break;
-				}
 
 				bw.write(str + "\r\n"); // 커서를 땡기고 enter
 				bw.flush(); // 강제로 버퍼를 비움
 				System.out.println("전송완료");
+				if (str.toLowerCase().equals("q")) {
+					check = !check;
+					break;
+				}
 
 				// sc = ss.accept();
 
