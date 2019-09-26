@@ -25,12 +25,12 @@ public class Client02 {
 		InputStream is = null;
 		InputStreamReader ir = null;
 		BufferedReader br = null;
-		try {
+		try { //"127.0.0.1",localhost
 			Socket sk = new Socket("211.238.142.34", 8282);
-			System.out.println("고르고 싶은 시간대");
+			
 			System.out.println("1.점심메뉴\t2.저녁메뉴");
 			int n = sn.nextInt();
-			os = sk.getOutputStream();
+			os = sk.getOutputStream(); //byte
 			ow = new OutputStreamWriter(os);
 			bw = new BufferedWriter(ow);
 			bw.write(n);
@@ -40,10 +40,10 @@ public class Client02 {
 			ir = new InputStreamReader(is);
 			br = new BufferedReader(ir);
 			String in = br.readLine();
-			if (n==1) {
-				System.out.println("추천 받은 점심메뉴는 "+ in);
-			}else {
-				System.out.println("추천 받은 저녁메뉴는 "+ in);
+			if (n == 1) {
+				System.out.println("추천 받은 점심메뉴는 " + in);
+			} else {
+				System.out.println("추천 받은 저녁메뉴는 " + in);
 			}
 
 		} catch (Exception e) {

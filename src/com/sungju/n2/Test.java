@@ -9,54 +9,24 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import com.sungju.n2.member.Member;
+
 public class Test {
 	public static void main(String[] args) {
-		File ln = new File("c:\\test", "lunch.txt");
-		System.out.println(ln.exists());
-		
-		ArrayList<String> lna = new ArrayList<String>();
-		FileReader fr;
-		String str;
-		int index;
-		Random random = new Random();
-		String out = null;
-		BufferedReader brln = null;
-		boolean check= true;
-		StringTokenizer st=null;
+		Info info = new Info();
+		ArrayList< Member> members = new ArrayList<Member>();
 		try {
+			members = info.init();
 			
-			
-			fr = new FileReader(ln);
-			brln = new BufferedReader(fr);
-			while (check) {
-				str = brln.readLine();
-				if (str==null) {
-					break;
-				}
-				st = new StringTokenizer(str);
-				while (st.hasMoreTokens()) {
-					st = new StringTokenizer(str, "-");
-					lna.add(st.nextToken());
-				}
-
+			for (int i = 0; i < members.size(); i++) {
+				System.out.println(members.get(i).getId());
+				System.out.println(members.get(i).getPw());
+				
 			}
-			index = random.nextInt(lna.size());
-			out = lna.get(index);
-			index = random.nextInt(lna.size());
-			out = lna.get(index);
-		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			try {
-				brln.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
-
 	}
 
 }

@@ -22,18 +22,21 @@ public class Server02 {
 		 * 1. lunch 에서 무작위 출력 2. dinner에서 무작위 출력
 		 */
 		Scanner sn = new Scanner(System.in);
-		InputStream is= null;
-		InputStreamReader ir= null;
+		InputStream is = null;
+		InputStreamReader ir = null;
 		BufferedReader br = null;
-		ServerSocket ss= null;
+		ServerSocket ss = null;
 		String str = null;
 		FileReader fr = null;
 		String out = null;
-		OutputStream os= null;
-		OutputStreamWriter ow =null;
+		OutputStream os = null;
+		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
 		StringTokenizer st = null;
-		
+		boolean check = true;
+		String time = null;
+		String trim = null;
+
 		try {
 			System.out.println("전송 대기중");
 			ss = new ServerSocket(8282);
@@ -42,81 +45,47 @@ public class Server02 {
 			ir = new InputStreamReader(is);
 			br = new BufferedReader(ir);
 			int r = br.read();
-			if (r==1) {
+			if (r == 1) {
 				System.out.print("점심메뉴 추천은 ");
-			}else if(r == 2) {
+				time = "lunch.txt";
+				trim = "-";
+			} else if (r == 2) {
 				System.out.print("저녁메뉴 추천은 ");
-				
+				time = "dinner.txt";
+				trim = ",";
+
 			}
 			Random random = new Random();
 			int index = 0;
-			boolean check = true;
 
 			///////////////////////////////
-			switch (r) {
 
-			case 1:
-				File ln = new File("c:\\test", "lunch.txt");
-				ArrayList<String> lna = new ArrayList<String>();
-				fr = new FileReader(ln);
-				BufferedReader brln = new BufferedReader(fr);
-				while (check) {
-					str = brln.readLine();
-					if (str == null) {
-						break;
-					}
-					st = new StringTokenizer(str,"-");
-					while (st.hasMoreTokens()) {
-						str = st.nextToken();
-						lna.add(str);
-					}
-					
+			File fd = new File("c:\\test", time);
+			ArrayList<String> fda = new ArrayList<String>();
+			fr = new FileReader(fd);
+			BufferedReader brfd = new BufferedReader(fr);
+			while (check) {
+				str = brfd.readLine();
+				if (str == null) {
+					break;
 				}
-				
-				index = random.nextInt(lna.size());
-				out = lna.get(index);
-				System.out.println(out);
-				os = sk.getOutputStream();
-				ow = new OutputStreamWriter(os);
-				bw = new BufferedWriter(ow);
-				bw.write(out);
-				bw.flush();
-				brln.close();
-
-				break;
-			case 2:
-				File dn = new File("c:\\test", "dinner.txt");
-				ArrayList<String> dna = new ArrayList<String>();
-				fr = new FileReader(dn);
-				BufferedReader brdn = new BufferedReader(fr);
-				while (check) {
-					str = brdn.readLine();
-					if (str == null) {
-						break;
-					}
-					st = new StringTokenizer(str,",");
-					while (st.hasMoreTokens()) {
-						str = st.nextToken().trim();
-						dna.add(str);
-					}
-					
+				st = new StringTokenizer(str, trim);
+				while (st.hasMoreTokens()) {
+					str = st.nextToken().trim();
+					fda.add(str);
 				}
-				index = random.nextInt(dna.size());
-				out = dna.get(index);
-				System.out.println(out);
 
-				os = sk.getOutputStream();
-				ow = new OutputStreamWriter(os);
-				bw = new BufferedWriter(ow);
-				bw.write(out);
-				bw.flush();
-				brdn.close();
-				break;
-
-			default:
-				str = "잘못누르셨습니다.";
-				break;
 			}
+
+			index = random.nextInt(fda.size());
+			out = fda.get(index);
+			System.out.println(out);
+			os = sk.getOutputStream();
+			ow = new OutputStreamWriter(os);
+			bw = new BufferedWriter(ow);
+			bw.write(out);
+			bw.flush();
+			brfd.close();
 
 		} catch (Exception e) {
 
@@ -126,7 +95,7 @@ public class Server02 {
 				bw.close();
 				ow.close();
 				os.close();
-				
+
 				fr.close();
 				br.close();
 				ir.close();
