@@ -53,12 +53,12 @@ public class Server {
 				System.out.println("전송할 메세지");
 				String str = null;
 				str = sn.next();
+				bw.write(str + "\r\n"); // 커서를 땡기고 enter
+				bw.flush(); // 강제로 버퍼를 비움
 				if (str.toLowerCase().equals("q")) {
 					check = !check;
 					break;
 				}
-				bw.write(str + "\r\n"); // 커서를 땡기고 enter
-				bw.flush(); // 강제로 버퍼를 비움
 				System.out.println("전송완료");
 			}
 
