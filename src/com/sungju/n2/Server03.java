@@ -30,6 +30,7 @@ public class Server03 {
 		InputStreamReader ir = null;
 		BufferedReader br = null;
 		String check = null;
+		Server02 server02 = new Server02();
 		
 		try {
 			System.out.println("수신 대기중...");
@@ -49,6 +50,8 @@ public class Server03 {
 			System.out.println("결과 전송중...");
 			
 			network03.send(sk, pass);
+			
+			server02.getoutp(sk);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

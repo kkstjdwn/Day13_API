@@ -21,11 +21,26 @@ public class Server02 {
 		/**
 		 * 1. lunch 에서 무작위 출력 2. dinner에서 무작위 출력
 		 */
+		ServerSocket ss = null;
+		Server02 server02 = new Server02();
+		try {
+			ss = new ServerSocket(8282);
+			Socket sk = ss.accept();
+			server02.getoutp(sk);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
+	
+	public void getoutp(Socket sk) {
+		
 		Scanner sn = new Scanner(System.in);
 		InputStream is = null;
 		InputStreamReader ir = null;
 		BufferedReader br = null;
-		ServerSocket ss = null;
 		String str = null;
 		FileReader fr = null;
 		String out = null;
@@ -39,8 +54,6 @@ public class Server02 {
 
 		try {
 			System.out.println("전송 대기중");
-			ss = new ServerSocket(8282);
-			Socket sk = ss.accept();
 			is = sk.getInputStream();
 			ir = new InputStreamReader(is);
 			br = new BufferedReader(ir);
@@ -105,7 +118,7 @@ public class Server02 {
 				e.printStackTrace();
 			}
 		}
-
+		
 	}
 
 }

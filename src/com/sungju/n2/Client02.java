@@ -17,7 +17,19 @@ public class Client02 {
 		 * 1. 점심메뉴 2. 저녁메뉴
 		 * 
 		 */
+		Socket sk;
+		try {
+			sk = new Socket("211.238.142.34", 8282);
+			Client02 client02 = new Client02();
+			client02.getinp(sk);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+	}
+	
+	public void getinp(Socket sk) {
 		Scanner sn = new Scanner(System.in);
 		OutputStream os = null;
 		OutputStreamWriter ow = null;
@@ -26,7 +38,6 @@ public class Client02 {
 		InputStreamReader ir = null;
 		BufferedReader br = null;
 		try { //"127.0.0.1",localhost
-			Socket sk = new Socket("211.238.142.34", 8282);
 			
 			System.out.println("1.점심메뉴\t2.저녁메뉴");
 			int n = sn.nextInt();
@@ -35,7 +46,7 @@ public class Client02 {
 			bw = new BufferedWriter(ow);
 			bw.write(n);
 			bw.flush();
-
+			
 			is = sk.getInputStream();
 			ir = new InputStreamReader(is);
 			br = new BufferedReader(ir);
@@ -45,9 +56,9 @@ public class Client02 {
 			} else {
 				System.out.println("추천 받은 저녁메뉴는 " + in);
 			}
-
+			
 		} catch (Exception e) {
-
+			
 			e.printStackTrace();
 		} finally {
 			try {
@@ -61,8 +72,13 @@ public class Client02 {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			
 		}
+		
+		
+		
+		
 	}
+	
 
 }
