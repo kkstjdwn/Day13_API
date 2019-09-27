@@ -40,6 +40,7 @@ public class Server {
 				String str2 = null;
 				str2 = br.readLine();
 				if (str2.toLowerCase().equals("q")) {
+					System.out.println("종료");
 					check = !check;
 					break;
 				}
@@ -56,6 +57,7 @@ public class Server {
 				bw.write(str + "\r\n"); // 커서를 땡기고 enter
 				bw.flush(); // 강제로 버퍼를 비움
 				if (str.toLowerCase().equals("q")) {
+					System.out.println("종료");
 					check = !check;
 					break;
 				}

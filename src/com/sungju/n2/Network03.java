@@ -17,7 +17,6 @@ public class Network03 {
 		BufferedWriter bw = new BufferedWriter(ow);
 		String send = a+","+b;
 		bw.write(send+"\r\n");
-		
 		bw.flush();
 		
 		
@@ -28,12 +27,13 @@ public class Network03 {
 		OutputStreamWriter ow = new OutputStreamWriter(os);
 		BufferedWriter bw = new BufferedWriter(ow);
 		String send = a;
-		bw.write(a+"\r\n");
+		bw.write(send+"\r\n");
 		bw.flush();
 		
 		
 		
 	}
+	
 	
 	public String receive(Socket sk) throws Exception {
 		InputStream is = sk.getInputStream();

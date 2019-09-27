@@ -17,18 +17,20 @@ public class Client03 {
 		Scanner sn = new Scanner(System.in);
 
 		try {
+			Socket sk = new Socket("211.238.142.34", 8282);
 			System.out.println("ID를 입력하세요");
 			String id = sn.next();
 			System.out.println("PW를 입력하세요");
 			String pw = sn.next();
-			Socket sk = new Socket("211.238.142.34", 8282);
 			network03.send(sk, id, pw);
 			System.out.println("로그인 중...");
 			String result = network03.receive(sk);
-			System.out.println(result);
-			if (result.equals("로그인 성공")) {
+			if (result.equals("1")) {
+				System.out.println(id+"님 어서오세욤");
 				client02.getinp(sk);
 
+			}else {
+				System.out.println("로그인 실패");
 			}
 
 		} catch (Exception e) {

@@ -30,7 +30,7 @@ public class Client {
 		boolean check = true;
 		try {
 			while (check) {
-				sc = new Socket("211.238.142.35", 8282);
+				sc = new Socket("211.238.142.34", 8282);
 				// ss = new ServerSocket(8282);
 				System.out.println("전송할 메세지");
 
@@ -44,6 +44,7 @@ public class Client {
 				bw.flush(); // 강제로 버퍼를 비움
 				System.out.println("전송완료");
 				if (str.toLowerCase().equals("q")) {
+					System.out.println("종료");
 					check = !check;
 					break;
 				}
@@ -60,6 +61,7 @@ public class Client {
 				String str2 = null;
 				str2 = br.readLine();
 				if (str2.toLowerCase().equals("q")) {
+					System.out.println("종료");
 					check = !check;
 					break;
 					

@@ -1,9 +1,5 @@
 package com.sungju.n2;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -41,7 +37,7 @@ public class Server03 {
 			System.out.println("결과 전송중...");
 
 			network03.send(sk, pass);
-			if (pass.equals("로그인 성공")) {
+			if (pass.equals("1")) {
 				server02.getoutp(sk);
 			}
 
