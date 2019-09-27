@@ -13,7 +13,7 @@ import com.sungju.n2.member.Member;
 
 public class Test {
 	public static void main(String[] args) {
-		Info info = new Info();
+		MemberService info = new MemberService();
 		ArrayList< Member> members = new ArrayList<Member>();
 		try {
 			members = info.init();

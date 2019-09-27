@@ -13,25 +13,19 @@ import com.sungju.n2.member.Member;
 public class Server03 {
 
 	public static void main(String[] args) {
-	/**
-	 * 전송받은 문자열 id,pw 분리
-	 * 저장되어있는 id,pw 비교
-	 * 리턴으로 신호
-	 */
+		/**
+		 * 전송받은 문자열 id,pw 분리 저장되어있는 id,pw 비교 리턴으로 신호
+		 */
 		ServerSocket ss = null;
 		Socket sk = null;
 		Network03 network03 = new Network03();
-		Info info = new Info();
+		MemberService info = new MemberService();
 		Member mem = new Member();
 		ArrayList<Member> memar = new ArrayList<Member>();
 		String str = null;
 		String pass = null;
-		InputStream is = null;
-		InputStreamReader ir = null;
-		BufferedReader br = null;
-		String check = null;
 		Server02 server02 = new Server02();
-		
+
 		try {
 			System.out.println("수신 대기중...");
 			ss = new ServerSocket(8282);
@@ -39,20 +33,18 @@ public class Server03 {
 			System.out.println("비교중...");
 			memar = info.init();
 			str = network03.receive(sk);
-//			is = sk.getInputStream();
-//			ir = new InputStreamReader(is);
-//			br = new BufferedReader(ir);
-//			br.readLine();
+
 			System.out.println("user정보 조회...");
 			mem = info.cut(str);
 			System.out.println("점검중...");
 			pass = info.compare(memar, mem);
 			System.out.println("결과 전송중...");
-			
+
 			network03.send(sk, pass);
-			
-			server02.getoutp(sk);
-			
+			if (pass.equals("로그인 성공")) {
+				server02.getoutp(sk);
+			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

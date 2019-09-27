@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 import com.sungju.n2.member.Member;
 
-public class Info {
+public class MemberService {
 
 	public ArrayList<Member> init() throws Exception {
 		ArrayList<Member> memar = new ArrayList<Member>();

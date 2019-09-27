@@ -10,6 +10,7 @@ import java.net.Socket;
 
 public class Network03 {
 	
+	
 	public void send(Socket sk,String a, String b) throws Exception{
 		OutputStream os = sk.getOutputStream();
 		OutputStreamWriter ow = new OutputStreamWriter(os);
